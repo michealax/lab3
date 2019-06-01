@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content=""/>
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <script type="application/x-javascript">
+
+        function validate(value) {
+            return   (value.length > 0  && value.length < 16 && !value.isEmpty);
+        }
+
+
+        function myFunction() {
+            this.event.preventDefault();
+            let username = $("#username").val();
+            let password = $("#password").val();
+            let email = $("#email").val();
+            let phone = $("#phone").val();
+
+            if (validate(username) && validate(password)){
+                $.ajax({
+                    url: 'register',
+                    data:JSON.stringify( {
+                        'username': username,
+                        'password': password,
+                        'email':email,
+                        'phone':phone
+                    }),
+                    contentType:'application/json;charset=UTF-8',
+                    type: 'POST',
+                    success: function (result) {
+                        console.log(result);
+                        if (result.status){
+                            window.location.href = '/home';
+                        } else {
+                            console.log(result.status);
+                            $("#err").text("Failed to sign up");
+                        }
+                    }
+                });
+            }
+
+            return false;
+        }
+
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- Bootstrap Core CSS -->
+    <link rel='stylesheet' th:href="@{/css/bootstrap.min.css}"/>
+    <!-- Custom CSS -->
+    <link th:href="@{/css/style.css}" rel='stylesheet' type='text/css'/>
+    <!-- Graph CSS -->
+    <link th:href="@{/css/font-awesome.css}" rel="stylesheet"/>
+    <!-- jQuery -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet'
+          type='text/css'>
+    <!-- lined-icons -->
+    <link rel="stylesheet" th:href="@{/css/icon-font.min.css}" type='text/css'/>
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css"/>
+    <!-- //lined-icons -->
+    <script th:src="@{/js/jquery-1.10.2.min.js}"></script>
+    <!--clock init-->
+</head>
+<body>
+<!--/login-->
+
+<div class="error_page">
+    <!--/login-top-->
+
+    <div class="error-top">
+        <h2 class="inner-tittle page" align="center">Admin</h2>
+        <div class="login">
+            <h3 class="inner-tittle t-inner">Signup</h3>
+            <form id="sigup" method="post">
+                <input type="text" class="text" placeholder="username" name = "username" id="username" required>
+                <input type="password" placeholder="password" name="password" id="password" required>
+                <input type="email" placeholder="email" name="email" id="email">
+                <input type="tel" placeholder="phone" name="phone" id="phone">
+                <div class="submit"><input type="submit" onclick="myFunction()" value="Signup"></div>
+
+                <div class="error" id="err" style="color: red"></div>
+                <div class="clearfix" ></div>
+                <div class="new">
+                    <p class="sign">Already have an account ? <a th:href="@{/login}">Sign In</a></p>
+                    <div class="clearfix"></div>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+
+</div>
+<div class="footer"></div>
+<script th:src="@{/js/jquery.nicescroll.js}"></script>
+<script th:src="@{/js/jquery.cookie.js}"></script>
+<script th:src="@{/js/scripts.js}"></script>
+<!-- Bootstrap Core JavaScript -->
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

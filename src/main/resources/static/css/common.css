@@ -1,0 +1,28 @@
+.login input[type="text"], .login input[type="password"], .login input[type="email"], .login input[type="tel"] {
+    width: 100%;
+    padding: 0.9em 1em 0.9em 4em;
+    color: #777;
+    font-size: 15px;
+    outline: none;
+    font-weight: 400;
+    border: 1px solid #ddd;
+    background: url("../images/icons.png") no-repeat 14px 17px;
+    margin: 0.3em 0;
+    font-family: 'Roboto', sans-serif;
+}
+.login input[type="password"] {
+    background: url("../images/icons.png") no-repeat 13px -33px;
+
+}
+.login input[type="email"] {
+    background: url("../images/icons.png") no-repeat 13px -33px;
+
+}
+.login input[type="tel"] {
+    background: url("../images/icons.png") no-repeat 13px -33px;
+
+}
+
+#err{
+    color: red;
+}

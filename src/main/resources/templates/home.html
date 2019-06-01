@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="用户信息">User</title>
+    <!-- Bootstrap Core CSS -->
+    <link rel='stylesheet' th:href="@{/css/bootstrap.min.css}"/>
+    <!-- Custom CSS -->
+    <link th:href="@{/css/style.css}" rel='stylesheet' type='text/css'/>
+    <!-- Graph CSS -->
+    <link th:href="@{/css/font-awesome.css}" rel="stylesheet"/>
+    <!-- jQuery -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet'
+          type='text/css'>
+    <!-- lined-icons -->
+    <link rel="stylesheet" th:href="@{/css/icon-font.min.css}" type='text/css'/>
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css"/>
+    <!-- //lined-icons -->
+    <script th:src="@{/js/jquery-1.10.2.min.js}"></script>
+    <!--clock init-->
+</head>
+<body>
+<div class="graph">
+    <div class="tables">
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>用户</th>
+                <th>邮箱</th>
+                <th>电话</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user,userStat:${users}">
+                <th scope="row" th:text="${userStat.count}"></th>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.phone}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    //通过内联表达式获取用户信息
+    var users = [[${users}]];
+    console.log(users)
+</script>
+</body>
+</html>
